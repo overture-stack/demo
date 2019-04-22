@@ -2,7 +2,7 @@ IP=127.0.0.1
 REPO=COLLAB
 
 #========================= Docker commands ===========================#
-start: 
+start:
 	docker-compose up -d
 
 stop:

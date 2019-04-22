@@ -15,7 +15,7 @@ nuke:
 
 
 #========================= maestro commands ===========================#
-index-study-1:
+index-study:
 	curl -X POST \
 	http://$(IP):11235/index/repository/$(REPO)/study/$(STUDY) \
 	-H 'Content-Type: application/json' \

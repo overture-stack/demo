@@ -1,7 +1,5 @@
 IP=127.0.0.1
-STUDY_1=BRCA-UK
-STUDY_2=PEME-CA
-REPO_1=COLLAB
+REPO=COLLAB
 
 #========================= Docker commands ===========================#
 start: 
@@ -19,7 +17,7 @@ nuke:
 #========================= maestro commands ===========================#
 index-study-1:
 	curl -X POST \
-	http://$(IP):11235/index/repository/$(REPO_1)/study/$(STUDY_1) \
+	http://$(IP):11235/index/repository/$(REPO)/study/$(STUDY) \
 	-H 'Content-Type: application/json' \
 	-H 'cache-control: no-cache' \
 	-d '{}'

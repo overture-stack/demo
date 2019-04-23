@@ -70,7 +70,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://song-db:54333/song?stringtype=unspecified
     depends_on:
       - song-db
-      - ego-ui
+#      - ego-ui
     restart: always
   song-db:
     image: "postgres:9.6"
@@ -83,9 +83,9 @@ services:
       POSTGRES_PASSWORD: password
     ports:
       - 32323:54333
-#    volumes:
-#      - "song-data:/var/lib/postgresql/data/pgdata"
-
+    volumes:
+      - "song-data:/var/lib/postgresql/data"
+    restart: always
   # 🎼️ 🎶️️ 🎶️️ 🎶️️ 🎶️ 🎶️️ 🎶️️ 🎶️️ 🎶️️
   # 🎼️ Maestro
   # 🎼️ 🎶️️ 🎶️️ 🎶️️ 🎶️ 🎶️️ 🎶️️ 🎶️️ 🎶️️
@@ -238,3 +238,4 @@ services:
 
 volumes:
   elasticsearch_data:
+  song-data:

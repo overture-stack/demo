@@ -174,8 +174,8 @@ services:
       S3_ACCESSKEY: minio
       S3_SECRETKEY: minio123
       AUTH_SERVER_URL: http://ego-api:8088/o/check_token/
-      AUTH_SERVER_CLIENTID:  3kJhz9pNtC0pFHAxr2SPkUkGjXrkWWqGcnPC0vBP
-      AUTH_SERVER_CLIENTSECRET: v9mjRtuEVwpt7cgqnsq6mxtCa5FbUOpKLGh7WX8a1dWbBKfrM3iV3VYMtE60jr3W7GLWtNeYIaJ8EUxPkaInclWVXf64qKdR3IKwyfpDU7JhvWEwIYQYdwV1YAUZjB2e
+      AUTH_SERVER_CLIENTID:  score
+      AUTH_SERVER_CLIENTSECRET: scoresecret
       AUTH_SERVER_UPLOADSCOPE: demo.WRITE
       AUTH_SERVER_DOWNLOADSCOPE: demo.READ
       SERVER_URL: http://localhost:8080

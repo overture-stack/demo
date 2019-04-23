@@ -70,7 +70,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://song-db:54333/song?stringtype=unspecified
     depends_on:
       - song-db
-#      - ego-ui
+      - ego-ui
     restart: always
   song-db:
     image: "postgres:9.6"
@@ -86,10 +86,10 @@ services:
     volumes:
       - "song-data:/var/lib/postgresql/data"
     restart: always
+
   # 🎼️ 🎶️️ 🎶️️ 🎶️️ 🎶️ 🎶️️ 🎶️️ 🎶️️ 🎶️️
   # 🎼️ Maestro
   # 🎼️ 🎶️️ 🎶️️ 🎶️️ 🎶️ 🎶️️ 🎶️️ 🎶️️ 🎶️️
-
   maestro:
     image: overture/maestro:0.0.1-SNAPSHOT
     container_name: maestro

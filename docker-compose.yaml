@@ -1,6 +1,50 @@
 version: '3'
 
 services:
+
+  #####################################################
+  # Ego
+  #####################################################
+  ego-db:
+    image: "postgres:9.6"
+    environment:
+      PGPORT: 5432
+      POSTGRES_DB: ego
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 18888:5432
+  ego-api:
+    image: "overture/ego:28f67f2-alpine"
+    depends_on: 
+      - ego-db
+    volumes:
+      - ./ego_bootstrap:/ego_boostrap
+    environment: 
+      SERVER_PORT: 8088
+      SERVER_MANAGEMENT_PORT: 8089
+      SPRING_PROFILES_ACTIVE: "auth"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://ego-db:5432/ego?stringtype=unspecified"
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_FLYWAY_ENABLED: "true"
+      SPRING_FLYWAY_LOCATIONS: "classpath:flyway/sql,classpath:db/migration,filesystem:/ego_boostrap"
+      GOOGLE_CLIENT_CLIENTID: "${GOOGLE_CLIENT_CLIENTID}"
+      GOOGLE_CLIENT_CLIENTSECRET: "${GOOGLE_CLIENT_CLIENTSECRET}"
+      #GOOGLE_CLIENT_PREESTABLISHEDREDIRECTURI: "${GOOGLE_CLIENT_PREESTABLISHEDREDIRECTURI}"
+    ports:
+      - 8088:8088  
+    restart: always
+  ego-ui:
+    image: "overture/ego-ui:7de75c2-alpine"
+    depends_on: 
+      - ego-api
+    environment:
+      REACT_APP_API: "http://localhost:8088"
+    ports:
+      - 3501:80
+
+
   maestro:
     image: overture/maestro:0.0.1-SNAPSHOT
     container_name: maestro

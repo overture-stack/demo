@@ -18,6 +18,18 @@ VALUES
     'APPROVED',
     'CLIENT');
 
+INSERT INTO egoapplication
+    (id, name, clientid, clientsecret, redirecturi, description, status, type)
+VALUES
+    ('98d98180-65f9-11e9-a923-1681be663d3e',
+    'song',
+    'song',
+    'song',
+    'http://song:7080',
+    'song',
+    'APPROVED',
+    'ADMIN');
+
 INSERT INTO egouser
     (id, name, email, type, firstname, lastname, createdat, lastlogin, status, preferredlanguage)
 VALUES

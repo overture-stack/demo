@@ -258,9 +258,6 @@ services:
     ports:
       - 8080:8080
       - 8081:8081
-    environment:
-      REACT_APP_ARRANGER_ADMIN_ROOT: http://arranger-server.local:5050/admin/graphql
-      STORYBOOK_ARRANGER_API: http://arranger-server.local:5050
 
 volumes:
   elasticsearch_data:

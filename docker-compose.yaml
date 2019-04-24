@@ -49,7 +49,7 @@ services:
   # SONG
   #####################################################
   song:
-    image: overture/song:edge
+    image: overture/song-server:edge
     container_name: song
     hostname: song
     ports:

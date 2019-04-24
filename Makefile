@@ -1,7 +1,7 @@
-IP=127.0.0.1
-REPO=COLLAB
-
 #========================= Docker commands ===========================#
+init:
+	cp -n .env.schema .env && echo SET THE .ENV file
+
 start:
 	. ./.env
 	docker-compose up -d
@@ -11,14 +11,3 @@ stop:
 
 nuke:
 	docker system prune --volumes
-
-
-
-
-#========================= maestro commands ===========================#
-index-study:
-	curl -X POST \
-	http://$(IP):11235/index/repository/$(REPO)/study/$(STUDY) \
-	-H 'Content-Type: application/json' \
-	-H 'cache-control: no-cache' \
-	-d '{}'

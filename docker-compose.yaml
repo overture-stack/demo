@@ -1,7 +1,6 @@
 version: "3"
 
 services:
-
   #####################################################
   # Ego
   #####################################################
@@ -16,11 +15,11 @@ services:
       - 18888:5432
   ego-api:
     image: "overture/ego:28f67f2-alpine"
-    depends_on: 
+    depends_on:
       - ego-db
     volumes:
       - ./ego_bootstrap:/ego_boostrap
-    environment: 
+    environment:
       SERVER_PORT: 8088
       SERVER_MANAGEMENT_PORT: 8089
       SPRING_PROFILES_ACTIVE: "auth"
@@ -31,14 +30,14 @@ services:
       SPRING_FLYWAY_LOCATIONS: "classpath:flyway/sql,classpath:db/migration,filesystem:/ego_boostrap"
       GOOGLE_CLIENT_CLIENTID: "${GOOGLE_CLIENT_CLIENTID}"
       GOOGLE_CLIENT_CLIENTSECRET: "${GOOGLE_CLIENT_CLIENTSECRET}"
-      #GOOGLE_CLIENT_PREESTABLISHEDREDIRECTURI: "${GOOGLE_CLIENT_PREESTABLISHEDREDIRECTURI}" 
+      #GOOGLE_CLIENT_PREESTABLISHEDREDIRECTURI: "${GOOGLE_CLIENT_PREESTABLISHEDREDIRECTURI}"
     ports:
       - 8088:8088
     restart: always
-    
+
   ego-ui:
     image: "overture/ego-ui:7de75c2-alpine"
-    depends_on: 
+    depends_on:
       - ego-api
     environment:
       REACT_APP_API: "http://localhost:8088"
@@ -202,10 +201,10 @@ services:
       MINIO_SECRET_KEY: minio123
       MINIO_PORT: 8085
     deploy:
-        restart_policy:
-            delay: 10s
-            max_attempts: 10
-            window: 60s
+      restart_policy:
+        delay: 10s
+        max_attempts: 10
+        window: 60s
     command: server --address=0.0.0.0:8085 /opt/dcc/data
   score-server:
     build: ./score_bootstrap
@@ -219,7 +218,7 @@ services:
       S3_ACCESSKEY: minio
       S3_SECRETKEY: minio123
       AUTH_SERVER_URL: http://ego-api:8088/o/check_token/
-      AUTH_SERVER_CLIENTID:  score
+      AUTH_SERVER_CLIENTID: score
       AUTH_SERVER_CLIENTSECRET: scoresecret
       AUTH_SERVER_UPLOADSCOPE: demo.WRITE
       AUTH_SERVER_DOWNLOADSCOPE: demo.READ
@@ -235,6 +234,30 @@ services:
     volumes:
       - "./.data:/opt/dcc/data"
     restart: always
+
+  #####################################################
+  # Arranger
+  #####################################################
+  arranger-server:
+    image: overture/arranger-server:1.0.0
+    container_name: arranger-server.local
+    hostname: arranger-server.local
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5050:5050
+    environment:
+      ES_HOST: http://elasticsearch.local:9200
+
+  arranger-ui:
+    build: ./arranger-ui
+    hostname: arranger-ui.local
+    container_name: arranger-ui.local
+    depends_on:
+      - arranger-server
+    ports:
+      - 8080:8080
+      - 8081:8081
 
 volumes:
   elasticsearch_data:

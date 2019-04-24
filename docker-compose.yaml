@@ -91,7 +91,7 @@ services:
   # Maestro
   #####################################################
   maestro:
-    image: overture/maestro:0.0.1-SNAPSHOT
+    image: overture/maestro:edge
     container_name: maestro
     ports:
       - 11235:11235

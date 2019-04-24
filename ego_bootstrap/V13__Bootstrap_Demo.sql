@@ -1,3 +1,44 @@
+INSERT INTO egouser
+    (id, name, email, type, firstname, lastname, createdat, lastlogin, status, preferredlanguage)
+VALUES
+    ('57b8f58e-cf8d-4a7f-ac49-51129e156f33',
+    '',
+    '   ',
+    'ADMIN',
+    'Demo',
+    'User',
+    NOW(),
+    NOW(),
+    'APPROVED',
+    'ENGLISH');
+
+INSERT INTO policy
+    (id, owner, name)
+VALUES
+    ('27b08a5b-5328-4223-8ddc-c9e6dcaa48c3', NULL, 'demo');
+
+INSERT INTO userpermission
+    (id, policy_id, user_id, access_level)
+VALUES
+    ('b69740f2-c9c9-413e-a682-d62b002b54a7',
+    '27b08a5b-5328-4223-8ddc-c9e6dcaa48c3',
+    '57b8f58e-cf8d-4a7f-ac49-51129e156f33',
+    'WRITE');
+
+INSERT INTO token
+    (id, name, owner)
+VALUES
+    ('e6881676-d88b-411d-b8db-4404b29ed585',
+    'e6881676-d88b-411d-b8db-4404b29ed585',
+    '57b8f58e-cf8d-4a7f-ac49-51129e156f33');
+
+INSERT INTO tokenscope
+    (token_id, policy_id, access_level)
+VALUES
+    ('e6881676-d88b-411d-b8db-4404b29ed585',
+    '27b08a5b-5328-4223-8ddc-c9e6dcaa48c3',
+    'WRITE');
+
 INSERT INTO egoapplication 
     (id, name, clientid, clientsecret, redirecturi, description, status, type) 
 VALUES 
@@ -16,11 +57,7 @@ VALUES
     'http://localhost:8087',
     'score server',
     'APPROVED',
-    'CLIENT');
-
-INSERT INTO egoapplication
-    (id, name, clientid, clientsecret, redirecturi, description, status, type)
-VALUES
+    'CLIENT'),
     ('98d98180-65f9-11e9-a923-1681be663d3e',
     'song',
     'song',
@@ -28,18 +65,4 @@ VALUES
     'http://song:7080',
     'song',
     'APPROVED',
-    'ADMIN');
-
-INSERT INTO egouser
-    (id, name, email, type, firstname, lastname, createdat, lastlogin, status, preferredlanguage)
-VALUES
-    ('57b8f58e-cf8d-4a7f-ac49-51129e156f33',
-    '',
-    '',
-    'ADMIN',
-    '',
-    '',
-    NOW(),
-    NOW(),
-    'APPROVED',
-    'ENGLISH');
+    'CLIENT');

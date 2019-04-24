@@ -3,7 +3,7 @@ REPO=COLLAB
 
 #========================= Docker commands ===========================#
 start:
-	source .env
+	. ./.env
 	docker-compose up -d
 
 stop:

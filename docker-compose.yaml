@@ -262,21 +262,6 @@ services:
       REACT_APP_ARRANGER_ADMIN_ROOT: http://arranger-server.local:5050/admin/graphql
       STORYBOOK_ARRANGER_API: http://arranger-server.local:5050
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana:6.6.1
-    ports:
-      - "5601:5601"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "50m"
-        max-file: "10"
-    depends_on:
-      - elasticsearch
-    environment:
-      LOGGING_QUIET: "true"
-      ELASTICSEARCH_HOSTS: http://elasticsearch.local:9200
-
 volumes:
   elasticsearch_data:
   song-data:

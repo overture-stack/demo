@@ -21,4 +21,3 @@ RUN cp -r arranger/modules/components/storybook-static ./arranger-storybook
 COPY nginx.conf /etc/nginx/nginx.conf
 
 CMD nginx -g "daemon off;"
-# CMD [ "nginx", "nginx -g daemon off" ]

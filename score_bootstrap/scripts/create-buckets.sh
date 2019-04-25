@@ -9,7 +9,7 @@ function setup_bucket {
 	bucket=$1
 	data_dir=${COLLABORATORY_DATA_DIRECTORY}
 	sentinel_object=${OBJECT_SENTINEL}
-	dir=$DCC_DATA/minio/$bucket/$data_dir
+	dir=$DCC_DATA/$bucket/$data_dir
 	if [ ! -d $dir ]; then
 		mkdir -p $dir
 	fi

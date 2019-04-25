@@ -1,12 +1,11 @@
+# Overture Demo
+This is a demo for the overture stack it has all the major components and runs through a flow end to end.
+
+# Prep
+- you need to be on vpn
+- ssh to ubuntu@142.1.177.110
+
 # Script
-
-## Pre
-on your laptop:
-- install vnc client
-- setup ssh tunnel : `make init`
-- connect to `localhost:5901`, enter the password to login
-
-# Demo:
 1. Show the Portal
     - story book http://142.1.177.110:8081
     - navigate to portal section, this will be empty

@@ -267,7 +267,7 @@ services:
       ES_HOST: http://localhost:9200
 
   arranger-ui:
-    build: ./arranger-ui
+    image: overture/demo_arranger-ui:latest
     network_mode: host
     hostname: arranger-ui.local
     container_name: arranger-ui.local

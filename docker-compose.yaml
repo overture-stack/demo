@@ -239,7 +239,7 @@ services:
   # Arranger
   #####################################################
   arranger-server:
-    image: overture/arranger-server:1.0.0
+    image: overture/arranger-server:1.0.4
     container_name: arranger-server.local
     hostname: arranger-server.local
     depends_on:

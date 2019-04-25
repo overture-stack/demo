@@ -12,7 +12,7 @@ RUN cd arranger && npm i && npm run bootstrap
 
 # builds admin ui and storybook
 RUN cd arranger/modules/admin-ui && REACT_APP_ARRANGER_ADMIN_ROOT=/admin/graphql npm run build
-RUN cd arranger/modules/components && STORYBOOK_ARRANGER_API=/ npm run build-storybook
+RUN cd arranger/modules/components && STORYBOOK_ES_HOST=http://elasticsearch.local:9200 STORYBOOK_ARRANGER_API=/ npm run build-storybook
 
 # copies build-bundles out
 RUN cp -r arranger/modules/admin-ui/build ./arranger-admin

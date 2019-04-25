@@ -1,9 +1,41 @@
+# Script
 
-# Demo script:
+## Pre
+on your laptop:
+- install vnc client
+- setup ssh tunnel : `make init`
+- connect to `localhost:5901`, enter the password to login
 
-## Prep
-- create the env file `make init`
-- ssh -L 5901:127.0.0.1:5901 -C -N -l ubuntu 142.1.177.110
-- use a vnc to localhost:5901
-- 
-
+# Demo:
+1. Show the Portal
+    - story book http://142.1.177.110:8081
+    - navigate to portal section, this will be empty
+    
+2. Show how to configure the Portal using Arranger
+    - admin UI http://142.1.177.110:8080
+    - go through setting up arranger
+        - create Project
+        - configure the view (Fields, Aggs and Table) then save
+        - the portal will now have empty table and facets
+        
+3. Create an entry in Song
+    - `make song-create-study`
+    - `make song-show-studies`
+    
+4. Upload a file using Score    
+    - validate the analysis: `make song-upload-payload`
+        - produce an upload id 
+    - save the analysis : `make song-save-payload uploadId=<paste upload id here>`
+    - upload the files to score: `make score-upload`
+    - publish the analysis: `make song-publish`
+    - see the published analysis: `make song-show-published`
+    
+5. Kick off Maestro
+    - index the first study: `make index-study`
+    
+6. Show the change in the Portal
+    - portal http://142.1.177.110:8081
+    - the table will have one record for that study.
+    
+7. Show Ego admin somewhere along with the above steps 
+    - do 1

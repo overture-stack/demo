@@ -108,7 +108,7 @@ services:
 
       # repository
       - maestro.repositories[0].code=COLLAB
-      - maestro.repositories[0].url=https://localhost:7080
+      - maestro.repositories[0].url=http://localhost:7080
       - maestro.repositories[0].name=collaboratory
       - maestro.repositories[0].dataPath=/oicr.icgc.test/data
       - maestro.repositories[0].metadataPath=/oicr.icgc.meta/metadata

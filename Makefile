@@ -29,8 +29,8 @@ score-upload:
 	docker run -it --rm  --network host -u $(id -u):$(id -g) --env SPRING_PROFILES=docker --env ACCESSTOKEN=e6881676-d88b-411d-b8db-4404b29ed585 --env STORAGE_URL=http://localhost:8087 --env METADATA_URL=http://localhost:7080 -v `pwd`/example:/data overture/score:1.6.1 bin/score-client upload --manifest /data/manifest.txt
 	@echo ""
 song-publish:
-	curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer e6881676-d88b-411d-b8db-4404b29ed585' 'http://localhost:7080/studies/test/analysis/publish/TESTANALYSIS' | jq .
-	@echo ""
+	curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer e6881676-d88b-411d-b8db-4404b29ed585' 'http://localhost:7080/studies/test/analysis/publish/TESTANALYSIS'
+	@echo "successful"
 song-show-published:
 	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer e6881676-d88b-411d-b8db-4404b29ed585' 'http://localhost:7080/studies/test/analysis?analysisStates=PUBLISHED'
 	@echo ""

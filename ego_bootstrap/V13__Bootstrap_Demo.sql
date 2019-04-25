@@ -26,11 +26,15 @@ VALUES
     'WRITE');
 
 INSERT INTO token
-    (id, name, owner)
+    (id, name, owner, issuedate, isrevoked, description, expirydate)
 VALUES
     ('e6881676-d88b-411d-b8db-4404b29ed585',
     'e6881676-d88b-411d-b8db-4404b29ed585',
-    '57b8f58e-cf8d-4a7f-ac49-51129e156f33');
+    '57b8f58e-cf8d-4a7f-ac49-51129e156f33',
+    NOW(),
+    false,
+    '',
+    NOW() + interval '1 year');
 
 INSERT INTO tokenscope
     (token_id, policy_id, access_level)

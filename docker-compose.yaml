@@ -50,23 +50,25 @@ services:
   song:
     image: overture/song-server:edge
     container_name: song
-    hostname: song
+    network_mode: host
     ports:
       - 7080:7080
     environment:
       # from https://github.com/overture-stack/SONG/blob/develop/song-docker-demo/server/config/application-secure.properties.template
       SERVER_PORT: 7080
-      AUTH_SERVER_URL: http://ego-api:8088/o/check_token/
+      AUTH_SERVER_URL: http://localhost:8088/o/check_token/
       AUTH_SERVER_CLIENTID: song
       AUTH_SERVER_CLIENTSECRET: song
-      AUTH_SERVER_UPLOADSCOPE: collab.upload
-      AUTH_SERVER_DOWNLOADSCOPE: collab.download
-      SCORE_URL: http://score-server:8087
-      SCORE_ACCESSTOKEN: ad83ebde-a55c-11e7-abc4-cec278b6b50a
+      AUTH_SERVER_PREFIX: demo
+      AUTH_SERVER_SUFFIX: WRITE
+      AUTH_SERVER_UPLOADSCOPE: demo.WRITE
+      AUTH_SERVER_DOWNLOADSCOPE: demo.READ
+      SCORE_URL: http://localhost:8087
+      SCORE_ACCESSTOKEN: e6881676-d88b-411d-b8db-4404b29ed585
       MANAGEMENT_SERVER_PORT: 7081
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: password
-      SPRING_DATASOURCE_URL: jdbc:postgresql://song-db:54333/song?stringtype=unspecified
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:54333/song?stringtype=unspecified
     depends_on:
       - song-db
       - ego-ui
@@ -74,6 +76,7 @@ services:
   song-db:
     image: "postgres:9.6"
     container_name: song-db
+    network_mode: host
     hostname: song-db
     environment:
       PGPORT: 54333
@@ -84,6 +87,7 @@ services:
       - 32323:54333
     volumes:
       - "song-data:/var/lib/postgresql/data"
+      - "m2:/root/.m2"
     restart: always
 
   #####################################################
@@ -208,6 +212,7 @@ services:
     command: server --address=0.0.0.0:8085 /opt/dcc/data
   score-server:
     build: ./score_bootstrap
+    hostname: score-server
     network_mode: host
     depends_on:
       - ego-api
@@ -215,20 +220,25 @@ services:
     environment:
       DCC_DATA: /opt/dcc/data
       OBJECT_STORAGE_URL: http://localhost:8085
+      SPRING_PROFILES_ACTIVE: amazon,collaboratory,prod,secure
+      aws_access_key_id: minio
+      aws_secret_access_key: minio123
+      S3_SIGV4ENABLED: "true"
       S3_ACCESSKEY: minio
       S3_SECRETKEY: minio123
-      AUTH_SERVER_URL: http://ego-api:8088/o/check_token/
+      S3_ENDPOINT: http://localhost:8085
+      AUTH_SERVER_URL: http://localhost:8088/o/check_token/
       AUTH_SERVER_CLIENTID: score
       AUTH_SERVER_CLIENTSECRET: scoresecret
       AUTH_SERVER_UPLOADSCOPE: demo.WRITE
       AUTH_SERVER_DOWNLOADSCOPE: demo.READ
-      SERVER_URL: http://localhost:8080
+      SERVER_URL: http://localhost:8087
       SERVER_PORT: 8087
       BUCKET_NAME_OBJECT: oicr.icgc.test
       BUCKET_NAME_STATE: oicr.icgc.test
       COLLABORATORY_DATA_DIRECTORY: data
       OBJECT_SENTINEL: heliograph
-      METADATA_URL: "http://song:7080"
+      METADATA_URL: "http://localhost:7080"
     ports:
       - 8087:8087
     volumes:
@@ -256,9 +266,10 @@ services:
     depends_on:
       - arranger-server
     ports:
-      - 8080:8080
-      - 8081:8081
+      - 18089:8080
+      - 18081:8081
 
 volumes:
   elasticsearch_data:
   song-data:
+  m2:

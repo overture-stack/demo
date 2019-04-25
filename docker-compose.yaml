@@ -248,7 +248,7 @@ services:
     ports:
       - 8087:8087
     volumes:
-      - "./.data:/opt/dcc/data"
+      - "object-store:/opt/dcc/data"
     restart: always
 
   #####################################################

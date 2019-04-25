@@ -8,17 +8,29 @@ on your laptop:
 
 # Demo:
 1. Show the Portal
-    - do 1
+    - portal http://142.1.177.110:8081
+    this will be empty
+    
 2. Show how to configure the Portal using Arranger
-    - do 1
+    - admin UI http://142.1.177.110:8080
+    
 3. Create an entry in Song
-    - do 1
-4. Upload a file using Score
-    - do 1
+    - `make song-create-study`
+    - `make song-show-studies`
+    
+4. Upload a file using Score    
+    - validate the analysis: `make song-upload-payload`
+        - produce an upload id 
+    - save the analysis : `make song-save-payload uploadId=<paste upload id here>`
+    - upload the files to score: `make score-upload`
+    - publish the analysis: `make song-publish`
+    - see the published analysis: `make song-show-published`
+    
 5. Kick off Maestro
-    - index the first study: `make index-study STUDY_ID=<study name here>`
-    - index the second study: `make index-study STUDY_ID=<study name here>`
+    - index the first study: `make index-study`
+    
 6. Show the change in the Portal
     - do 1
+    
 7. Show Ego admin somewhere along with the above steps 
     - do 1

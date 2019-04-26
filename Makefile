@@ -1,7 +1,7 @@
 #========================= Docker commands ===========================#
 init:
 	cp -n .env.schema .env && echo SET THE .ENV file
-	sudo apt-get jq
+	sudo apt-get install jq
 
 start:
 	. ./.env

@@ -36,5 +36,5 @@ This is a demo for the overture stack it has all the major components and runs t
     - portal http://142.1.177.110:8081
     - the table will have one record for that study.
     
-7. Show Ego admin somewhere along with the above steps 
-    - do 1
+7. (TBD) Show Ego admin somewhere along with the above steps 
+    - http://142.1.177.110:3501

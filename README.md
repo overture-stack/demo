@@ -4,6 +4,7 @@ This is a demo for the overture stack it has all the major components and runs t
 # Prep
 - you need to be on vpn
 - ssh to ubuntu@142.1.177.110
+- the project is cloned under ~/demo
 
 # Script
 1. Show the Portal

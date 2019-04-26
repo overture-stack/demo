@@ -11,8 +11,7 @@ stop:
 	docker-compose down
 
 nuke:
-	docker system prune --volumes
-
+	docker-compose down -v
 song-create-study:
 	curl -X POST --header 'Content-Type: application/json' --header 'Accept: */*' --header 'Authorization: Bearer e6881676-d88b-411d-b8db-4404b29ed585' -d '{"description": "test","name": "test","organization": "test","studyId": "test"}' 'http://localhost:7080/studies/test/'
 	@echo ""
